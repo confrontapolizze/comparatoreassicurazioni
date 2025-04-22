@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comparatore Polizze Danni</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f8fc;
+      margin: 0;
+      padding: 30px;
+      color: #2a2a2a;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #003366;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .tabs button {
+      background-color: #e0ecf8;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .tabs button.active {
+      background-color: #00509e;
+      color: white;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-left: 5px solid #00509e;
+    }
+    .card h4 {
+      margin-bottom: 5px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card li {
+      font-size: 14px;
+      margin: 4px 0;
+    }
+    .card ul {
+      margin-left: 16px;
+      padding-left: 0;
+    }
+    .card button {
+      margin-top: 10px;
+      background: #0078d7;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      margin-top: 50px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .form-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #003366;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .form-grid input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    .form-grid input:focus {
+      outline: none;
+      border-color: #0078d7;
+    }
+    .form-grid-full {
+      grid-column: span 2;
+    }
+    .form-container button {
+      margin-top: 20px;
+      background-color: #00509e;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Comparatore Polizze Danni</h1>
+
+<div class="tabs">
+  <button class="active" onclick="filtra('salute')">Polizze Salute</button>
+  <button onclick="filtra('animali')">Polizze Animali</button>
+  <button onclick="filtra('calamità')">Calamità Naturali</button>
+</div>
+
+<h2>Classifica per Prezzo</h2>
+<div class="grid" id="risultati"></div>
+
+<div class="form-container">
+  <h3>Ricevi Offerte Personalizzate</h3>
+  <form class="form-grid">
+    <input type="text" placeholder="Nome" required />
+    <input type="text" placeholder="Cognome" required />
+    <input type="date" placeholder="Data di nascita" required />
+    <input type="email" placeholder="Email" required />
+    <input type="text" placeholder="Comune di residenza" required />
+    <input type="text" placeholder="Provincia" required />
+    <input type="tel" placeholder="Numero di telefono" required class="form-grid-full" />
+    <button type="submit" class="form-grid-full">Richiedi le migliori offerte</button>
+  </form>
+</div>
+
+<script>
+  const icone = {
+    salute: "🩺",
+    animali: "🐶",
+    calamità: "🌍"
+  };
+
+  const polizze = [
+    { tipo: "salute", nome: "SalutePlus", provider: "Allianz", prezzo: 45, caratteristiche: ["Copertura visite specialistiche", "Rimborso farmaci", "Nessuna franchigia"] },
+    { tipo: "animali", nome: "PetCare Premium", provider: "Net Insurance", prezzo: 20, caratteristiche: ["Veterinario h24", "Vaccinazioni incluse", "RC cane/gatto"] },
+    { tipo: "calamità", nome: "Impresa Sicura", provider: "Helvetia", prezzo: 70, caratteristiche: ["Copertura terremoto", "Alluvioni incluse", "Danni strutturali"] },
+    { tipo: "salute", nome: "HealthBasic", provider: "AXA", prezzo: 30, caratteristiche: ["Visite di base", "Ricovero incluso", "Copertura emergenze"] },
+    { tipo: "animali", nome: "FidoCare", provider: "Genertel", prezzo: 15, caratteristiche: ["Assistenza telefonica", "RC base", "Cure veterinarie ordinarie"] },
+    { tipo: "calamità", nome: "Protezione Azienda", provider: "UnipolSai", prezzo: 60, caratteristiche: ["Incendi e inondazioni", "Danni macchinari", "Interruzione attività"] },
+    { tipo: "salute", nome: "WellCare Premium", provider: "Cattolica", prezzo: 55, caratteristiche: ["Ricoveri privati", "Assistenza 24h", "Check-up annuale gratuito"] }
+  ];
+
+  function filtra(tipo) {
+    document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const container = document.getElementById('risultati');
+    container.innerHTML = '';
+
+    const filtrate = polizze
+      .filter(p => p.tipo === tipo)
+      .sort((a, b) => a.prezzo - b.prezzo);
+
+    filtrate.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h4>${icone[p.tipo]} ${p.nome}</h4>
+        <p><strong>Provider:</strong> ${p.provider}</p>
+        <p><strong>Prezzo:</strong> €${p.prezzo}/mese</p>
+        <ul>${p.caratteristiche.map(c => `<li>${c}</li>`).join('')}</ul>
+        <button>Contatta Partner</button>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  filtra('salute');
+</script>
+
+</body>
+</html>
