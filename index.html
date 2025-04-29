@@ -1,194 +1,2191 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Comparatore Polizze Danni</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f8fc;
-      margin: 0;
-      padding: 30px;
-      color: #2a2a2a;
-    }
-    h1, h2 {
-      text-align: center;
-      color: #003366;
-    }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .tabs button {
-      background-color: #e0ecf8;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 5px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .tabs button.active {
-      background-color: #00509e;
-      color: white;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-left: 5px solid #00509e;
-    }
-    .card h4 {
-      margin-bottom: 5px;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .card p, .card li {
-      font-size: 14px;
-      margin: 4px 0;
-    }
-    .card ul {
-      margin-left: 16px;
-      padding-left: 0;
-    }
-    .card button {
-      margin-top: 10px;
-      background: #0078d7;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .form-container {
-      background: white;
-      padding: 30px;
-      margin-top: 50px;
-      border-radius: 10px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .form-container h3 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #003366;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-    .form-grid input {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-    .form-grid input:focus {
-      outline: none;
-      border-color: #0078d7;
-    }
-    .form-grid-full {
-      grid-column: span 2;
-    }
-    .form-container button {
-      margin-top: 20px;
-      background-color: #00509e;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Confronta le migliori polizze assicurative per salute, animali e calamità naturali. Risparmia fino al 40%">
+    <title>AssicuraConfronto | Confronto Polizze Assicurative Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003366;
+            --accent-color: #ff6b00;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --white: #ffffff;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #212529;
+            background-color: var(--light-gray);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .auth-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 15px;
+            transition: var(--transition);
+        }
+        
+        .auth-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo-text span {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a i {
+            margin-right: 5px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .search-box {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .search-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .search-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark-gray);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .search-tab.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .search-tab:hover:not(.active) {
+            color: var(--primary-color);
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group select:focus, .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        
+        .search-btn {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 20px;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            grid-column: 1 / -1;
+        }
+        
+        .search-btn:hover {
+            background-color: #e05e00;
+            transform: translateY(-2px);
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .category-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .category-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid #e9ecef;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .card-img img {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .card-body h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .card-body p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .card-stats span {
+            display: flex;
+            align-items: center;
+            color: #6c757d;
+        }
+        
+        .card-stats i {
+            margin-right: 5px;
+            color: var(--accent-color);
+        }
+        
+        .card-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .card-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .feature-item p {
+            color: #6c757d;
+        }
+        
+        /* Partners Section */
+        .partners {
+            padding: 40px 0;
+            background-color: var(--white);
+        }
+        
+        .partners-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .partners-slider {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .partner-logo {
+            height: 60px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            margin: 0 10px;
+            opacity: 0.6;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Comparison Filters */
+        .comparison-filters {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+        
+        .filter-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-title i {
+            margin-right: 10px;
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .filter-group select, .filter-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .filter-group select:focus, .filter-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        
+        .apply-filters {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+        
+        .apply-filters:hover {
+            background-color: #e05e00;
+            transform: translateY(-2px);
+        }
+        
+        /* Results Header */
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .results-count {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+        }
+        
+        .sort-options label {
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .sort-options select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .company-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-logo {
+            width: 60px;
+            height: 40px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+        
+        .company-name {
+            font-weight: 600;
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin-bottom: 5px;
+        }
+        
+        .reviews {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .price-period {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .coverage-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .coverage-item i {
+            margin-right: 8px;
+            color: #28a745;
+        }
+        
+        .select-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .select-btn:hover {
+            background-color: #e05e00;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin: 40px 0;
+        }
+        
+        .info-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box ul li {
+            margin-bottom: 8px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin: 40px 0;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .faq-question i {
+            transition: var(--transition);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: #f8f9fa;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            color: #adb5bd;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            margin-top: 3px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #495057;
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            background-color: #212529;
+            padding: 20px 0;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .sort-options {
+                margin-top: 15px;
+                width: 100%;
+            }
+            
+            .sort-options select {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .search-tab {
+                flex: 1 0 50%;
+                text-align: center;
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .category-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        /* Pagina specifica Salute */
+        .salute-page .page-header::before {
+            background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        /* Pagina specifica Animali */
+        .animali-page .page-header::before {
+            background-image: url('https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        /* Pagina specifica Calamità */
+        .calamita-page .page-header::before {
+            background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+    </style>
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="contact-info">
+                <i class="fas fa-phone-alt"></i> +39 02 1234567
+            </div>
+            <div class="auth-links">
+                <a href="#"><i class="fas fa-user"></i> Accedi</a>
+                <a href="#"><i class="fas fa-user-plus"></i> Registrati</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40x40" alt="AssicuraConfronto Logo">
+                <div class="logo-text">Assicura<span>Confronto</span></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#salute"><i class="fas fa-heartbeat"></i> Salute</a></li>
+                    <li><a href="#animali"><i class="fas fa-paw"></i> Animali</a></li>
+                    <li><a href="#calamita"><i class="fas fa-house-damage"></i> Calamità</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Chi siamo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<h1>Comparatore Polizze Danni</h1>
+    <!-- Homepage Content -->
+    <div id="home">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Confronta e risparmia sulle tue assicurazioni</h1>
+                <p>Trova la polizza perfetta tra le migliori compagnie assicurative con un risparmio fino al 40%</p>
+                
+                <div class="search-box">
+                    <h3>Cosa vuoi assicurare?</h3>
+                    <div class="search-tabs">
+                        <div class="search-tab active">Salute</div>
+                        <div class="search-tab">Animali</div>
+                        <div class="search-tab">Calamità Naturali</div>
+                    </div>
+                    <form class="search-form">
+                        <div class="form-group">
+                            <label for="age">Età</label>
+                            <select id="age">
+                                <option value="">Seleziona età</option>
+                                <option value="18-25">18-25 anni</option>
+                                <option value="26-35">26-35 anni</option>
+                                <option value="36-45">36-45 anni</option>
+                                <option value="46-55">46-55 anni</option>
+                                <option value="56-65">56-65 anni</option>
+                                <option value="65+">Oltre 65 anni</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Regione</label>
+                            <select id="region">
+                                <option value="">Seleziona regione</option>
+                                <option value="lombardia">Lombardia</option>
+                                <option value="lazio">Lazio</option>
+                                <option value="campania">Campania</option>
+                                <option value="sicilia">Sicilia</option>
+                                <option value="veneto">Veneto</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="coverage">Copertura</label>
+                            <select id="coverage">
+                                <option value="">Tipo di copertura</option>
+                                <option value="base">Base</option>
+                                <option value="media">Media</option>
+                                <option value="completa">Completa</option>
+                                <option value="premium">Premium</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="search-btn">Confronta ora</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Categories Section -->
+        <section class="categories">
+            <div class="section-title">
+                <h2>Le nostre categorie di polizze</h2>
+                <p>Confronta le migliori offerte per ogni tipologia di assicurazione</p>
+            </div>
+            
+            <div class="category-cards">
+                <div class="category-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Polizze Salute">
+                    </div>
+                    <div class="card-body">
+                        <h3>Polizze Salute</h3>
+                        <p>Scopri le migliori assicurazioni sanitarie per te e la tua famiglia con coperture personalizzabili.</p>
+                        <div class="card-stats">
+                            <span><i class="fas fa-building"></i> 25 Compagnie</span>
+                            <span><i class="fas fa-euro-sign"></i> Da 15/mese</span>
+                        </div>
+                        <a href="#salute" class="card-btn">Confronta offerte</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Polizze Animali">
+                    </div>
+                    <div class="card-body">
+                        <h3>Polizze Animali</h3>
+                        <p>Proteggi il tuo amico a quattro zampe con la polizza più adatta alle sue esigenze.</p>
+                        <div class="card-stats">
+                            <span><i class="fas fa-building"></i> 18 Compagnie</span>
+                            <span><i class="fas fa-euro-sign"></i> Da 10/mese</span>
+                        </div>
+                        <a href="#animali" class="card-btn">Confronta offerte</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Polizze Calamità Naturali">
+                    </div>
+                    <div class="card-body">
+                        <h3>Polizze Calamità Naturali</h3>
+                        <p>Coperture complete per danni da eventi atmosferici e calamità naturali alla tua abitazione.</p>
+                        <div class="card-stats">
+                            <span><i class="fas fa-building"></i> 22 Compagnie</span>
+                            <span><i class="fas fa-euro-sign"></i> Da 20/mese</span>
+                        </div>
+                        <a href="#calamita" class="card-btn">Confronta offerte</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="features">
+            <div class="section-title">
+                <h2>Perché scegliere AssicuraConfronto</h2>
+                <p>I vantaggi di confrontare le polizze con il nostro servizio</p>
+            </div>
+            
+            <div class="features-container">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Risparmio garantito</h3>
+                    <p>Confrontando le migliori offerte del mercato puoi risparmiare fino al 40% sulla tua polizza.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Coperture ottimali</h3>
+                    <p>Trova la polizza con le coperture più adatte alle tue esigenze tra centinaia di opzioni.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Risparmio di tempo</h3>
+                    <p>Confronta in pochi minuti decine di offerte senza dover contattare ogni singola compagnia.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Esperti a disposizione</h3>
+                    <p>Il nostro team di esperti è disponibile per aiutarti a scegliere la polizza migliore.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Nessun costo</h3>
+                    <p>Il nostro servizio è completamente gratuito per gli utenti. Pagherai solo la polizza scelta.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Recensioni verificate</h3>
+                    <p>Leggi le esperienze reali di altri clienti per scegliere la compagnia più affidabile.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Partners Section -->
+        <section class="partners">
+            <div class="section-title">
+                <h2>Le compagnie che collaborano con noi</h2>
+            </div>
+            
+            <div class="partners-container">
+                <div class="partners-slider">
+                    <img src="https://via.placeholder.com/150x60?text=Allianz" alt="Allianz" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60?text=Generali" alt="Generali" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60?text=AXA" alt="AXA" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60?text=Unipol" alt="Unipol" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60?text=Reale" alt="Reale Mutua" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60?text=NET" alt="NET Insurance" class="partner-logo">
+                </div>
+            </div>
+        </section>
+    </div>
 
-<div class="tabs">
-  <button class="active" onclick="filtra('salute')">Polizze Salute</button>
-  <button onclick="filtra('animali')">Polizze Animali</button>
-  <button onclick="filtra('calamità')">Calamità Naturali</button>
-</div>
+    <!-- Polizze Salute Page -->
+    <div id="salute" class="salute-page" style="display: none;">
+        <section class="page-header">
+            <div class="page-header-content">
+                <div class="breadcrumb">
+                    <a href="#home">Home</a>
+                    <span>/</span>
+                    <a href="#salute">Polizze Salute</a>
+                </div>
+                <h1>Confronto Polizze Salute</h1>
+                <p>Trova la migliore assicurazione sanitaria per te e la tua famiglia tra le principali compagnie italiane</p>
+            </div>
+        </section>
+        
+        <section class="page-content">
+            <div class="container">
+                <div class="comparison-filters">
+                    <h2 class="filter-title"><i class="fas fa-sliders-h"></i> Filtra i risultati</h2>
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label for="salute-age">Età</label>
+                            <select id="salute-age">
+                                <option value="">Tutte le età</option>
+                                <option value="18-30">18-30 anni</option>
+                                <option value="31-45">31-45 anni</option>
+                                <option value="46-60">46-60 anni</option>
+                                <option value="61+">Oltre 60 anni</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="salute-region">Regione</label>
+                            <select id="salute-region">
+                                <option value="">Tutte le regioni</option>
+                                <option value="nord">Nord Italia</option>
+                                <option value="centro">Centro Italia</option>
+                                <option value="sud">Sud Italia e Isole</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="salute-coverage">Tipo di copertura</label>
+                            <select id="salute-coverage">
+                                <option value="">Tutti i tipi</option>
+                                <option value="base">Base</option>
+                                <option value="media">Media</option>
+                                <option value="completa">Completa</option>
+                                <option value="famiglia">Famiglia</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="salute-hospital">Ospedale preferito</label>
+                            <select id="salute-hospital">
+                                <option value="">Nessuna preferenza</option>
+                                <option value="privato">Strutture private</option>
+                                <option value="pubblico">Strutture pubbliche</option>
+                                <option value="entrambi">Pubbliche e private</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="apply-filters">Applica filtri</button>
+                </div>
+                
+                <div class="results-header">
+                    <div class="results-count">15 polizze trovate</div>
+                    <div class="sort-options">
+                        <label for="salute-sort">Ordina per:</label>
+                        <select id="salute-sort">
+                            <option value="prezzo">Prezzo crescente</option>
+                            <option value="prezzo-desc">Prezzo decrescente</option>
+                            <option value="rating">Valutazione</option>
+                            <option value="copertura">Estensione copertura</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Compagnia</th>
+                            <th>Coperture</th>
+                            <th>Prezzo mensile</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=Allianz" alt="Allianz" class="company-logo">
+                                    <div>
+                                        <div class="company-name">Allianz Health Plus</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <div class="reviews">256 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri ospedalieri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Visite specialistiche</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Esami diagnostici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Assistenza domiciliare</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 42,90</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=Generali" alt="Generali" class="company-logo">
+                                    <div>
+                                        <div class="company-name">Generali Salute Oro</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <div class="reviews">189 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri ospedalieri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Visite specialistiche</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Esami diagnostici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Medicina preventiva</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 38,50</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=Unipol" alt="Unipol" class="company-logo">
+                                    <div>
+                                        <div class="company-name">UnipolSalute Famiglia</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="reviews">312 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri ospedalieri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Visite specialistiche</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Esami diagnostici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Assistenza pediatrica</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 65,00</div>
+                                <div class="price-period">/mese (famiglia)</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=AXA" alt="AXA" class="company-logo">
+                                    <div>
+                                        <div class="company-name">AXA Health Premium</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <div class="reviews">278 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri ospedalieri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Visite specialistiche</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Esami diagnostici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Cure all'estero</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 52,30</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=NET" alt="NET Insurance" class="company-logo">
+                                    <div>
+                                        <div class="company-name">NET Salute Completa</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <div class="reviews">145 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri ospedalieri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Visite specialistiche</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Esami diagnostici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Fisioterapia</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 29,90</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-box">
+                    <h2>Guida alle Polizze Salute</h2>
+                    <p>Le polizze salute sono assicurazioni che coprono le spese mediche in caso di malattia o infortunio. Possono includere diverse tipologie di coperture, dalle visite specialistiche ai ricoveri ospedalieri.</p>
+                    
+                    <h3>Cosa copre una polizza salute?</h3>
+                    <ul>
+                        <li>Ricoveri ospedalieri</li>
+                        <li>Visite specialistiche</li>
+                        <li>Esami diagnostici</li>
+                        <li>Interventi chirurgici</li>
+                        <li>Assistenza domiciliare</li>
+                        <li>Medicine non convenzionali</li>
+                    </ul>
+                    
+                    <h3>Come scegliere la polizza giusta?</h3>
+                    <p>Per scegliere la polizza salute più adatta alle tue esigenze considera:</p>
+                    <ul>
+                        <li>Le tue condizioni di salute attuali</li>
+                        <li>L'età dei familiari da assicurare</li>
+                        <li>La presenza di eventuali malattie croniche</li>
+                        <li>La frequenza con cui ti rechi da specialisti</li>
+                        <li>La preferenza tra strutture pubbliche o private</li>
+                    </ul>
+                </div>
+                
+                <div class="faq-section">
+                    <h2 class="section-title">Domande frequenti sulle Polizze Salute</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Le polizze salute coprono le malattie preesistenti?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Dipende dalla compagnia assicurativa e dalla specifica polizza. Alcune polizze possono escludere le condizioni preesistenti, altre possono coprirle dopo un periodo di carenza (tipicamente 1-2 anni), mentre altre ancora possono richiedere un sovrapprezzo per includerle.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Posso scegliere liberamente i medici e le strutture?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Molte polizze offrono la libertà di scelta del medico e della struttura, sia pubblica che privata. Alcune polizze economiche potrebbero limitare la scelta a una rete di strutture convenzionate. È importante verificare questa condizione prima di sottoscrivere la polizza.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Quanto tempo devo aspettare prima di usufruire delle coperture?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>La maggior parte delle polizze prevede un periodo di carenza (di solito 30-90 giorni) durante il quale non è possibile richiedere rimborsi. Per alcune prestazioni specifiche (come le cure odontoiatriche) il periodo di carenza può essere più lungo (6-12 mesi).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-<h2>Classifica per Prezzo</h2>
-<div class="grid" id="risultati"></div>
+    <!-- Polizze Animali Page -->
+    <div id="animali" class="animali-page" style="display: none;">
+        <section class="page-header">
+            <div class="page-header-content">
+                <div class="breadcrumb">
+                    <a href="#home">Home</a>
+                    <span>/</span>
+                    <a href="#animali">Polizze Animali</a>
+                </div>
+                <h1>Confronto Polizze Animali</h1>
+                <p>Proteggi il tuo amico a quattro zampe con la polizza più adatta alle sue esigenze</p>
+            </div>
+        </section>
+        
+        <section class="page-content">
+            <div class="container">
+                <div class="comparison-filters">
+                    <h2 class="filter-title"><i class="fas fa-sliders-h"></i> Filtra i risultati</h2>
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label for="animal-type">Tipo di animale</label>
+                            <select id="animal-type">
+                                <option value="">Tutti gli animali</option>
+                                <option value="cane">Cane</option>
+                                <option value="gatto">Gatto</option>
+                                <option value="altro">Altro</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="animal-age">Età animale</label>
+                            <select id="animal-age">
+                                <option value="">Tutte le età</option>
+                                <option value="0-3">0-3 anni</option>
+                                <option value="4-7">4-7 anni</option>
+                                <option value="8+">Oltre 8 anni</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="animal-coverage">Tipo di copertura</label>
+                            <select id="animal-coverage">
+                                <option value="">Tutti i tipi</option>
+                                <option value="base">Base</option>
+                                <option value="media">Media</option>
+                                <option value="completa">Completa</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="animal-breed">Razza</label>
+                            <select id="animal-breed">
+                                <option value="">Tutte le razze</option>
+                                <option value="piccola">Taglia piccola</option>
+                                <option value="media">Taglia media</option>
+                                <option value="grande">Taglia grande</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="apply-filters">Applica filtri</button>
+                </div>
+                
+                <div class="results-header">
+                    <div class="results-count">12 polizze trovate</div>
+                    <div class="sort-options">
+                        <label for="animal-sort">Ordina per:</label>
+                        <select id="animal-sort">
+                            <option value="prezzo">Prezzo crescente</option>
+                            <option value="prezzo-desc">Prezzo decrescente</option>
+                            <option value="rating">Valutazione</option>
+                            <option value="copertura">Estensione copertura</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Compagnia</th>
+                            <th>Coperture</th>
+                            <th>Prezzo mensile</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=Allianz" alt="Allianz" class="company-logo">
+                                    <div>
+                                        <div class="company-name">Allianz Pet Care</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <div class="reviews">198 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Cure veterinarie</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Interventi chirurgici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Farmaci</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 19,90</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=Generali" alt="Generali" class="company-logo">
+                                    <div>
+                                        <div class="company-name">Generali Pet Protection</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <div class="reviews">156 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Cure veterinarie</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Interventi chirurgici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Responsabilità civile</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 24,50</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=AXA" alt="AXA" class="company-logo">
+                                    <div>
+                                        <div class="company-name">AXA Amico Animale</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="reviews">245 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Cure veterinarie</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Interventi chirurgici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Cure odontoiatriche</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 29,90</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=NET" alt="NET Insurance" class="company-logo">
+                                    <div>
+                                        <div class="company-name">NET Pet Insurance</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <div class="reviews">132 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Cure veterinarie</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Ricoveri</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Interventi chirurgici</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Medicine alternative</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 15,90</div>
+                                <div class="price-period">/mese</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-box">
+                    <h2>Guida alle Polizze Animali</h2>
+                    <p>Le polizze animali sono assicurazioni che coprono le spese veterinarie e altri rischi legati alla proprietà di animali domestici. Sono particolarmente utili per cani e gatti, ma possono essere estese anche ad altri animali.</p>
+                    
+                    <h3>Cosa copre una polizza animali?</h3>
+                    <ul>
+                        <li>Spese veterinarie per malattie e infortuni</li>
+                        <li>Ricoveri e interventi chirurgici</li>
+                        <li>Farmaci e terapie</li>
+                        <li>Responsabilità civile verso terzi (per danni causati dall'animale)</li>
+                        <li>Ricerca e recupero in caso di smarrimento</li>
+                        <li>Assistenza in viaggio</li>
+                    </ul>
+                    
+                    <h3>Come scegliere la polizza giusta?</h3>
+                    <p>Per scegliere la polizza animali più adatta considera:</p>
+                    <ul>
+                        <li>La specie, razza ed età del tuo animale</li>
+                        <li>Le condizioni di salute preesistenti</li>
+                        <li>La frequenza con cui vai dal veterinario</li>
+                        <li>Se viaggi spesso con il tuo animale</li>
+                        <li>Se hai bisogno di copertura per responsabilità civile</li>
+                    </ul>
+                </div>
+                
+                <div class="faq-section">
+                    <h2 class="section-title">Domande frequenti sulle Polizze Animali</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Le polizze animali coprono le malattie preesistenti?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>La maggior parte delle polizze animali esclude le condizioni preesistenti. Alcune compagnie possono offrire copertura limitata dopo un periodo di carenza (tipicamente 6-12 mesi) o richiedere un sovrapprezzo. È fondamentale dichiarare tutte le condizioni preesistenti al momento della sottoscrizione.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Fino a quale età posso assicurare il mio animale?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>L'età massima per assicurare un animale varia a seconda della compagnia e della razza. In genere, per i cani è tra gli 8 e i 10 anni, mentre per i gatti può arrivare fino a 12-14 anni. Alcune compagnie offrono polizze "senior" con coperture specifiche per animali anziani.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Posso scegliere qualsiasi veterinario?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>La maggior parte delle polizze animali permette di scegliere liberamente il veterinario. Alcune polizze economiche potrebbero richiedere l'utilizzo di una rete di strutture convenzionate per ottenere il massimo rimborso. Verifica sempre le condizioni della polizza su questo aspetto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-<div class="form-container">
-  <h3>Ricevi Offerte Personalizzate</h3>
-  <form class="form-grid">
-    <input type="text" placeholder="Nome" required />
-    <input type="text" placeholder="Cognome" required />
-    <input type="date" placeholder="Data di nascita" required />
-    <input type="email" placeholder="Email" required />
-    <input type="text" placeholder="Comune di residenza" required />
-    <input type="text" placeholder="Provincia" required />
-    <input type="tel" placeholder="Numero di telefono" required class="form-grid-full" />
-    <button type="submit" class="form-grid-full">Richiedi le migliori offerte</button>
-  </form>
-</div>
+    <!-- Polizze Calamità Naturali Page -->
+    <div id="calamita" class="calamita-page" style="display: none;">
+        <section class="page-header">
+            <div class="page-header-content">
+                <div class="breadcrumb">
+                    <a href="#home">Home</a>
+                    <span>/</span>
+                    <a href="#calamita">Polizze Calamità Naturali</a>
+                </div>
+                <h1>Confronto Polizze Calamità Naturali</h1>
+                <p>Proteggi la tua casa da eventi atmosferici e calamità naturali con la giusta copertura</p>
+            </div>
+        </section>
+        
+        <section class="page-content">
+            <div class="container">
+                <div class="comparison-filters">
+                    <h2 class="filter-title"><i class="fas fa-sliders-h"></i> Filtra i risultati</h2>
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label for="property-type">Tipo di immobile</label>
+                            <select id="property-type">
+                                <option value="">Tutti gli immobili</option>
+                                <option value="casa">Abitazione</option>
+                                <option value="ufficio">Ufficio</option>
+                                <option value="negozio">Attività commerciale</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="property-region">Regione</label>
+                            <select id="property-region">
+                                <option value="">Tutte le regioni</option>
+                                <option value="nord">Nord Italia</option>
+                                <option value="centro">Centro Italia</option>
+                                <option value="sud">Sud Italia e Isole</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="calamity-type">Tipo di calamità</label>
+                            <select id="calamity-type">
+                                <option value="">Tutte le calamità</option>
+                                <option value="terremoto">Terremoto</option>
+                                <option value="alluvione">Alluvione</option>
+                                <option value="incendio">Incendio boschivo</option>
+                                <option value="altro">Altro</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="property-value">Valore immobile</label>
+                            <select id="property-value">
+                                <option value="">Qualsiasi valore</option>
+                                <option value="100k">Fino a 100.000€</option>
+                                <option value="200k">100.000-200.000€</option>
+                                <option value="300k">200.000-300.000€</option>
+                                <option value="300k+">Oltre 300.000€</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="apply-filters">Applica filtri</button>
+                </div>
+                
+                <div class="results-header">
+                    <div class="results-count">10 polizze trovate</div>
+                    <div class="sort-options">
+                        <label for="calamita-sort">Ordina per:</label>
+                        <select id="calamita-sort">
+                            <option value="prezzo">Prezzo crescente</option>
+                            <option value="prezzo-desc">Prezzo decrescente</option>
+                            <option value="rating">Valutazione</option>
+                            <option value="copertura">Estensione copertura</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Compagnia</th>
+                            <th>Coperture</th>
+                            <th>Prezzo annuale</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=Generali" alt="Generali" class="company-logo">
+                                    <div>
+                                        <div class="company-name">Generali Casa Sicura</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <div class="reviews">176 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Terremoto</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Alluvione</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Frana</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Eruzione vulcanica</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 220,00</div>
+                                <div class="price-period">/anno</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=Allianz" alt="Allianz" class="company-logo">
+                                    <div>
+                                        <div class="company-name">Allianz Protezione Casa</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <div class="reviews">154 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Terremoto</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Alluvione</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Frana</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Grandine</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 190,00</div>
+                                <div class="price-period">/anno</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=AXA" alt="AXA" class="company-logo">
+                                    <div>
+                                        <div class="company-name">AXA Casa Protetta</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="reviews">231 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Terremoto</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Alluvione</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Frana</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Eventi atmosferici</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 250,00</div>
+                                <div class="price-period">/anno</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-info">
+                                    <img src="https://via.placeholder.com/60x40?text=NET" alt="NET Insurance" class="company-logo">
+                                    <div>
+                                        <div class="company-name">NET Calamità Plus</div>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <div class="reviews">128 recensioni</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Terremoto</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Alluvione</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Frana</div>
+                                <div class="coverage-item"><i class="fas fa-check"></i> Assistenza emergenza</div>
+                            </td>
+                            <td>
+                                <div class="price">€ 175,00</div>
+                                <div class="price-period">/anno</div>
+                            </td>
+                            <td>
+                                <button class="select-btn">Seleziona</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-box">
+                    <h2>Guida alle Polizze Calamità Naturali</h2>
+                    <p>Le polizze calamità naturali sono assicurazioni che proteggono la tua casa o attività commerciale dai danni causati da eventi naturali come terremoti, alluvioni, frane e altri fenomeni atmosferici estremi.</p>
+                    
+                    <h3>Cosa copre una polizza calamità naturali?</h3>
+                    <ul>
+                        <li>Danni da terremoto</li>
+                        <li>Danni da alluvione e inondazione</li>
+                        <li>Danni da frana e smottamento</li>
+                        <li>Danni da eruzione vulcanica</li>
+                        <li>Danni da grandine eccezionale</li>
+                        <li>Danni da vento forte (uragano, tornado)</li>
+                        <li>Spese per alloggio temporaneo</li>
+                    </ul>
+                    
+                    <h3>Come scegliere la polizza giusta?</h3>
+                    <p>Per scegliere la polizza calamità naturali più adatta considera:</p>
+                    <ul>
+                        <li>La zona in cui si trova l'immobile (rischio sismico, idrogeologico)</li>
+                        <li>Il valore dell'immobile e dei suoi contenuti</li>
+                        <li>Le coperture specifiche di cui hai bisogno</li>
+                        <li>La franchigia (la parte di danno che rimane a tuo carico)</li>
+                        <li>La presenza di servizi aggiuntivi (assistenza, alloggio temporaneo)</li>
+                    </ul>
+                </div>
+                
+                <div class="faq-section">
+                    <h2 class="section-title">Domande frequenti sulle Polizze Calamità Naturali</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>La polizza calamità naturali è obbligatoria?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>In Italia, l'assicurazione contro i danni da terremoto non è obbligatoria per le abitazioni private, ma è fortemente consigliata, soprattutto nelle zone ad alto rischio sismico. Per alcune attività commerciali o immobili con mutuo, potrebbe essere richiesta dalla banca.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Come viene calcolato il premio?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Il premio viene calcolato in base a diversi fattori: il valore dell'immobile, la sua ubicazione (zona sismica, rischio idrogeologico), il tipo di costruzione, le misure di sicurezza presenti e l'entità della copertura richiesta. Immobili in zone a maggior rischio avranno premi più elevati.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Cosa succede se la mia zona viene dichiarata a rischio dopo aver stipulato la polizza?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Le polizze esistenti generalmente mantengono le condizioni originarie. Tuttavia, al momento del rinnovo, la compagnia potrebbe rivedere il premio in base al nuovo livello di rischio. È importante verificare le condizioni di polizza su questo aspetto specifico.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-<script>
-  const icone = {
-    salute: "🩺",
-    animali: "🐶",
-    calamità: "🌍"
-  };
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>AssicuraConfronto</h3>
+                <p>Il miglior comparatore di polizze assicurative in Italia. Confronta e risparmia in pochi click.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Servizi</h3>
+                <ul>
+                    <li><a href="#salute">Polizze Salute</a></li>
+                    <li><a href="#animali">Polizze Animali</a></li>
+                    <li><a href="#calamita">Polizze Calamità</a></li>
+                    <li><a href="#">Assicurazione Auto</a></li>
+                    <li><a href="#">Assicurazione Casa</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Azienda</h3>
+                <ul>
+                    <li><a href="#">Chi siamo</a></li>
+                    <li><a href="#">Lavora con noi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Notizie</a></li>
+                    <li><a href="#">Contatti</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contatti</h3>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> Via Roma 123, 20121 Milano MI</p>
+                    <p><i class="fas fa-phone-alt"></i> +39 02 1234567</p>
+                    <p><i class="fas fa-envelope"></i> info@assicuraconfronto.it</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2023 AssicuraConfronto. Tutti i diritti riservati. | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a> | <a href="#">Termini e condizioni</a></p>
+            </div>
+        </div>
+    </footer>
 
-  const polizze = [
-    { tipo: "salute", nome: "SalutePlus", provider: "Allianz", prezzo: 45, caratteristiche: ["Copertura visite specialistiche", "Rimborso farmaci", "Nessuna franchigia"] },
-    { tipo: "animali", nome: "PetCare Premium", provider: "Net Insurance", prezzo: 20, caratteristiche: ["Veterinario h24", "Vaccinazioni incluse", "RC cane/gatto"] },
-    { tipo: "calamità", nome: "Impresa Sicura", provider: "Helvetia", prezzo: 70, caratteristiche: ["Copertura terremoto", "Alluvioni incluse", "Danni strutturali"] },
-    { tipo: "salute", nome: "HealthBasic", provider: "AXA", prezzo: 30, caratteristiche: ["Visite di base", "Ricovero incluso", "Copertura emergenze"] },
-    { tipo: "animali", nome: "FidoCare", provider: "Genertel", prezzo: 15, caratteristiche: ["Assistenza telefonica", "RC base", "Cure veterinarie ordinarie"] },
-    { tipo: "calamità", nome: "Protezione Azienda", provider: "UnipolSai", prezzo: 60, caratteristiche: ["Incendi e inondazioni", "Danni macchinari", "Interruzione attività"] },
-    { tipo: "salute", nome: "WellCare Premium", provider: "Cattolica", prezzo: 55, caratteristiche: ["Ricoveri privati", "Assistenza 24h", "Check-up annuale gratuito"] }
-  ];
-
-  function filtra(tipo) {
-    document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-
-    const container = document.getElementById('risultati');
-    container.innerHTML = '';
-
-    const filtrate = polizze
-      .filter(p => p.tipo === tipo)
-      .sort((a, b) => a.prezzo - b.prezzo);
-
-    filtrate.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <h4>${icone[p.tipo]} ${p.nome}</h4>
-        <p><strong>Provider:</strong> ${p.provider}</p>
-        <p><strong>Prezzo:</strong> €${p.prezzo}/mese</p>
-        <ul>${p.caratteristiche.map(c => `<li>${c}</li>`).join('')}</ul>
-        <button>Contatta Partner</button>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  filtra('salute');
-</script>
-
+    <script>
+        // Gestione della navigazione tra pagine
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostra la pagina home di default
+            showPage('home');
+            
+            // Gestione dei click sui link di navigazione
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('href').substring(1);
+                    showPage(pageId);
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            // Gestione dei click sui link del footer
+            document.querySelectorAll('.footer-col a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const pageId = this.getAttribute('href').substring(1);
+                        showPage(pageId);
+                        
+                        // Scroll to top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Gestione dei click sulle card delle categorie
+            document.querySelectorAll('.card-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('href').substring(1);
+                    showPage(pageId);
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            // Gestione FAQ
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Gestione tab ricerca
+            document.querySelectorAll('.search-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelector('.search-tab.active').classList.remove('active');
+                    this.classList.add('active');
+                });
+            });
+        });
+        
+        function showPage(pageId) {
+            // Nascondi tutte le pagine
+            document.querySelectorAll('div[id="home"], div[id="salute"], div[id="animali"], div[id="calamita"]').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Mostra la pagina richiesta
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Aggiorna lo stato attivo nel menu
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Imposta come attivo il link corretto
+            const activeLink = document.querySelector(`nav a[href="#${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
